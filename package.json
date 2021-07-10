@@ -23,6 +23,11 @@
     ],
     "*.js": "eslint --cache --fix"
   },
+  "nodemonConfig": {
+    "ignore": [
+      "client/*"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/red-lipped-batfish-la44/job-tracer.git"
