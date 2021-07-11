@@ -1,12 +1,11 @@
 const express = require('express');
 
 const router = express.Router();
-
 const jobApplicationController = require('../controllers/jobApplicationController');
 
 /**
- * @route GET /
- * @desc GET All job applications
+ * @route GET /api/
+ * @desc GET all job applications
  * @access Public
  */
 
@@ -15,41 +14,41 @@ router.get('/', jobApplicationController.getJobApplications, (req, res) => {
 });
 
 /**
- * @route POST /jobApplication
- * @desc Create new job application
+ * @route POST /api/jobApplication
+ * @desc CREATE new job application
  * @access Public
  */
 
 router.post(
-  '/jobApplications',
+  '/jobApplication',
   jobApplicationController.createJobApplication,
   (req, res) => {
     res.status(200).json({});
   }
 );
 
-// /**
-//  * @route PUT /jobApplications/:id
-//  * @desc Update job application by id
-//  * @access Public
-//  */
+/**
+ * @route PUT /api/jobApplication
+ * @desc UPDATE job application by id
+ * @access Public
+ */
 
 router.put(
-  '/jobApplications',
+  '/jobApplication',
   jobApplicationController.updateJobApplicationById,
   (req, res) => {
     res.status(200).json({});
   }
 );
 
-// /**
-//  * @route DELETE  /jobApplications/:id
-//  * @desc Delete job application by id
-//  * @access Public
-//  */
+/**
+ * @route DELETE  /api/jobApplication
+ * @desc DELETE job application by id
+ * @access Public
+ */
 
 router.delete(
-  '/jobApplications',
+  '/jobApplication',
   jobApplicationController.deleteJobApplicationById,
   (req, res) => {
     res.status(200).json({});
