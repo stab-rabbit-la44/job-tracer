@@ -3,6 +3,8 @@ const db = require('../models/jobApplicationModels');
 
 const jobApplicationController = {};
 
+// get all jobApplications
+
 jobApplicationController.getJobApplications = (req, res, next) => {
   // create query string
   const queryStr = `
@@ -10,6 +12,7 @@ jobApplicationController.getJobApplications = (req, res, next) => {
     `;
 
   // call db query passing in query string
+
   db.query(queryStr)
     .then((data) => {
       // add the data to res.locals
@@ -25,8 +28,11 @@ jobApplicationController.getJobApplications = (req, res, next) => {
     });
 };
 
+// create new job application
+
 jobApplicationController.createJobApplication = (req, res, next) => {
-  // get values from the req.body
+  // get values from the req body
+
   const {
     companyName,
     jobTitle,
@@ -38,6 +44,7 @@ jobApplicationController.createJobApplication = (req, res, next) => {
   } = req.body;
 
   // put values in to a new array
+
   const jobApplicationValues = [
     companyName,
     jobTitle,
@@ -48,6 +55,8 @@ jobApplicationController.createJobApplication = (req, res, next) => {
     favorite,
   ];
 
+  // make query string
+
   const queryStr = `
     INSERT INTO 
       applications 
@@ -55,43 +64,29 @@ jobApplicationController.createJobApplication = (req, res, next) => {
       VALUES 
         ($1, $2, $3, $4, $5, $6, $7)`;
 
-  // call db query passing in query string
+  // call db query passing in query string and values array
+
   db.query(queryStr, jobApplicationValues)
     .then(() => {
       return next();
     })
     .catch((err) => {
       return next({
-        log: 'Express error handler caught error in jobApplicationController.createJobApplications',
-        status: 400,
-        message: { err },
-      });
-    });
-
-  // call database and pass in values;
-  // catch any errors
-  // return next
-};
-
-jobApplicationController.deleteJobApplicationById = (req, res, next) => {
-  const { id } = req.query;
-  const queryStr = `DELETE FROM applications
-  WHERE id = $1`;
-  db.query(queryStr, [id])
-    .then(() => {
-      return next();
-    })
-    .catch((err) => {
-      return next({
-        log: 'Express error handler caught error in jobApplicationController.deleteJobApplication',
+        log: 'Express error handler caught error in jobApplicationController.createJobApplication',
         status: 400,
         message: { err },
       });
     });
 };
+
+// update job application
 
 jobApplicationController.updateJobApplicationById = (req, res, next) => {
+  // get id from req query
+
   const { id } = req.query;
+
+  // get values from req body
 
   const {
     companyName,
@@ -102,6 +97,8 @@ jobApplicationController.updateJobApplicationById = (req, res, next) => {
     notes,
     favorite,
   } = req.body;
+
+  // add job application id as last array element
 
   const updatedJobApplicationValues = [
     companyName,
@@ -114,6 +111,8 @@ jobApplicationController.updateJobApplicationById = (req, res, next) => {
     id,
   ];
 
+  // make query string
+
   const queryStr = `
     UPDATE
       applications
@@ -122,6 +121,8 @@ jobApplicationController.updateJobApplicationById = (req, res, next) => {
     WHERE 
       id = $8  
     `;
+
+  //  query db
 
   db.query(queryStr, updatedJobApplicationValues)
     .then(() => {
@@ -135,4 +136,35 @@ jobApplicationController.updateJobApplicationById = (req, res, next) => {
       });
     });
 };
+
+// delete job application
+
+jobApplicationController.deleteJobApplicationById = (req, res, next) => {
+  // get id from req query
+
+  const { id } = req.query;
+
+  // make query string
+
+  const queryStr = `
+    DELETE FROM 
+      applications
+    WHERE 
+      id = $1`;
+
+  // query db
+
+  db.query(queryStr, [id])
+    .then(() => {
+      return next();
+    })
+    .catch((err) => {
+      return next({
+        log: 'Express error handler caught error in jobApplicationController.deleteJobApplication',
+        status: 400,
+        message: { err },
+      });
+    });
+};
+
 module.exports = jobApplicationController;
