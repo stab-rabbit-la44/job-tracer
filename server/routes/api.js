@@ -20,27 +20,27 @@ router.get('/', jobApplicationController.getJobApplications, (req, res) => {
  * @access Public
  */
 
-// router.post(
-//   '/jobApplications',
-//   jobApplicationController.createJobApplication,
-//   (req, res) => {
-//     res.status(200).json({});
-//   }
-// );
+router.post(
+  '/jobApplications',
+  jobApplicationController.createJobApplication,
+  (req, res) => {
+    res.status(200).json({});
+  }
+);
 
 // /**
-//  * @route PATCH /jobApplications/:id
+//  * @route PUT /jobApplications/:id
 //  * @desc Update job application by id
 //  * @access Public
 //  */
 
-// router.patch(
-//   '/jobApplications/:id',
-//   jobApplicationController.updateJobApplication,
-//   (req, res) => {
-//     res.status(200).json(res.locals.newJobApplication);
-//   }
-// );
+router.put(
+  '/jobApplications',
+  jobApplicationController.updateJobApplicationById,
+  (req, res) => {
+    res.status(200).json({});
+  }
+);
 
 // /**
 //  * @route DELETE  /jobApplications/:id
@@ -48,10 +48,12 @@ router.get('/', jobApplicationController.getJobApplications, (req, res) => {
 //  * @access Public
 //  */
 
-// router.delete(
-//   '/jobApplications/:id',
-//   jobApplicationController.deleteJobApplication,
-//   (req, res) => {}
-// );
+router.delete(
+  '/jobApplications',
+  jobApplicationController.deleteJobApplicationById,
+  (req, res) => {
+    res.status(200).json({});
+  }
+);
 
 module.exports = router;
