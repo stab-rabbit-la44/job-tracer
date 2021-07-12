@@ -20,7 +20,9 @@
   },
   "plugins": ["react", "prettier"],
   "rules": {
-    "react/forbid-prop-types": 0,
+    "react/destructuring-assignment": "off",
+    "no-console": "off",
+    "react/prop-types": "off",
     "prettier/prettier": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   }
