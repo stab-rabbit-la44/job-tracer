@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 // import * as actions from './actions/actions';
-import ApplicationList from './containers/ApplicationList';
+import JobApplicationList from './containers/JobApplicationList';
 
 const mapStateToProps = (state) => ({
   apps: state.applications.applications,
@@ -16,7 +16,7 @@ const App = (props) => {
       <button type="button" onClick={() => console.log('create button here')}>
         Create
       </button>
-      <ApplicationList jobApps={props.apps} />
+      <JobApplicationList jobApps={props.apps} />
     </div>
   );
 };
