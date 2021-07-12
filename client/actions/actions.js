@@ -16,13 +16,22 @@ export const loadJobApplications = () => (dispatch) => {
     });
 };
 
-export const addApp = () => ({
-  type: types.ADD_JOB_APPLICATION,
-  payload: 'addApp payload placeholder',
-});
+export const addJobApplication = (data) => (dispatch) => {
+  fetch(`api/jobApplication`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'Application/JSON',
+    },
+    body: JSON.stringify(data),
+  }).then(() => {
+    dispatch({
+      type: types.ADD_JOB_APPLICATION,
+      payload: data,
+    });
+  });
+};
 
 export const deleteJobApplication = (id) => (dispatch) => {
-  console.log(id);
   fetch(`api/jobApplication/?id=${id}`, {
     method: 'DELETE',
     headers: {

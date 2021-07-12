@@ -1,10 +1,35 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
+import { connect } from 'react-redux';
+
+import * as actions from '../../actions/actions';
+
+const data = {
+  companyName: 'From the Frontend LLC',
+  jobTitle: 'president',
+  salary: 9000,
+  // status: 'offer',
+  description: 'test from postman',
+  postSource: 'friend',
+  notes: 'nothing to report, carry on',
+  favorite: true,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  addJobApplication: () => dispatch(actions.addJobApplication(data)),
+});
 
 class CreateJobApplicationModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.addJobApplication(data);
+    console.log(this.props.history);
   }
 
   render() {
@@ -43,10 +68,8 @@ class CreateJobApplicationModal extends React.Component {
               </label>
               <label>
                 Application Status:
-                <select>
-                  <option selected value="pending">
-                    Pending
-                  </option>
+                <select defaultValue="pending">
+                  <option value="pending">Pending</option>
                   <option value="applied">Applied</option>
                   <option value="interviewed">Interviewed</option>
                   <option value="offer_received">Offer Received</option>
@@ -57,10 +80,8 @@ class CreateJobApplicationModal extends React.Component {
               </label>
               <label>
                 Post Source:
-                <select>
-                  <option selected value="friend">
-                    Friend
-                  </option>
+                <select defaultValue="friend">
+                  <option value="friend">Friend</option>
                   <option value="internet">Internet</option>
                 </select>
               </label>
@@ -72,7 +93,9 @@ class CreateJobApplicationModal extends React.Component {
                 Notes:
                 <textarea />
               </label>
-              <button type="submit">Add Job</button>
+              <button type="submit" onClick={this.handleSubmit}>
+                Add Job
+              </button>
             </form>
           </div>
           <div className="modal-footer">
@@ -90,4 +113,4 @@ class CreateJobApplicationModal extends React.Component {
   }
 }
 
-export default CreateJobApplicationModal;
+export default connect(null, mapDispatchToProps)(CreateJobApplicationModal);

@@ -33,6 +33,7 @@ jobApplicationController.getJobApplications = (req, res, next) => {
 jobApplicationController.createJobApplication = (req, res, next) => {
   // get values from the req body
 
+  console.log(req.body);
   const {
     companyName,
     jobTitle,
