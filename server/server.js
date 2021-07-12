@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const express = require('express');
 
 const app = express();
@@ -5,27 +6,27 @@ const apiRouter = require('./routes/api');
 
 const PORT = 3000;
 
-/**
- * handle parsing request body
- */
+// start server
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server started on port ${PORT}`);
+});
+
+//  handle parsing request body
 
 app.use(express.json());
 
-/**
- * define route handlers
- */
+// define route handlers
 
 app.use('/api', apiRouter);
 
-// catch-all route handler for any requests to an unknown route
+// catch-all for unknown route requests
+
 app.use((req, res) =>
-  // eslint-disable-next-line quotes
   res.status(404).send("This is not the page you're looking for...")
 );
 
-/**
- * Global Error Handler
- */
+// global error handler
 
 app.use((err, req, res) => {
   const defaultErr = {
@@ -36,8 +37,4 @@ app.use((err, req, res) => {
   const errorObj = { ...defaultErr, ...err };
   console.log(errorObj.log);
   return res.status(errorObj.status).json(errorObj.message);
-});
-
-app.listen(PORT, () => {
-  console.log(`🚀 Server started on port${PORT}`);
 });
