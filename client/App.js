@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import * as actions from './actions/actions';
-import JobApplicationList from './containers/JobApplicationList';
+import JobApplicationList from './components/JobApplicationList';
+import store from './store';
+import { loadJobApplications } from './actions/actions';
 import CreateJobApplicationModal from './components/modals/CreateJobApplicationModal';
 
 const mapStateToProps = (state) => ({
-  apps: state.applications.applications,
+  jobApplications: state.jobApplications.jobApplications,
 });
-
-// const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
 
 const App = (props) => {
   const [show, setShow] = useState(false);
+  useEffect(() => {
+    store.dispatch(loadJobApplications());
+  }, []);
 
   return (
     <div>
@@ -20,7 +21,7 @@ const App = (props) => {
         Create
       </button>
       <CreateJobApplicationModal onClose={() => setShow(false)} show={show} />
-      <JobApplicationList jobApps={props.apps} />
+      <JobApplicationList jobApplications={props.jobApplications} />
     </div>
   );
 };

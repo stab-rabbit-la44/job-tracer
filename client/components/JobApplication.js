@@ -8,7 +8,7 @@ const JobApplication = (props) => (
     <button type="button" onClick={() => console.log('edit button here')}>
       Edit
     </button>
-    <button type="button" onClick={() => console.log('delete button here')}>
+    <button type="button" onClick={() => props.deleteJobApplication(props.id)}>
       Delete
     </button>
   </div>
