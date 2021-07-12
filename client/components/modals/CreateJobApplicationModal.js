@@ -1,13 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { connect } from 'react-redux';
-import { addApp } from '../../actions/actions';
+import * as actions from '../../actions/actions';
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    submitHandler: (details) => dispatch(addApp(details)),
-  };
-};
+const mapDispatchToProps = (dispatch) => ({
+  addJobApplication: (newJobApplication) =>
+    dispatch(actions.addJobApplication(newJobApplication)),
+});
 
 class CreateJobApplicationModal extends React.Component {
   constructor(props) {
@@ -16,7 +15,7 @@ class CreateJobApplicationModal extends React.Component {
       details: {
         companyName: '',
         jobTitle: '',
-        salary: null,
+        salary: '',
         postSource: '',
         description: '',
         statusName: '',
@@ -25,20 +24,19 @@ class CreateJobApplicationModal extends React.Component {
         favorite: false,
       },
     };
-
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.formFieldChangeHandler = this.formFieldChangeHandler.bind(this);
-    this.SubmitHandler = this.SubmitHandler.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.addJobApplication(this.state.details);
   }
 
   formFieldChangeHandler(event) {
     const { details } = this.state;
     details[event.target.name] = event.target.value;
     this.setState({ details });
-  }
-
-  SubmitHandler(event) {
-    event.preventDefault();
-    this.props.submitHandler(this.state.details);
   }
 
   render() {
@@ -57,13 +55,11 @@ class CreateJobApplicationModal extends React.Component {
               <label>
                 Favorite?:
                 <select
+                  defaultValue={this.state.details.favorite}
                   name="favorite"
-                  value={this.state.details.favorite}
                   onChange={this.formFieldChangeHandler}
                 >
-                  <option selected value="false">
-                    No
-                  </option>
+                  <option value="false">No</option>
                   <option value="true">Yes</option>
                 </select>
               </label>
@@ -106,13 +102,11 @@ class CreateJobApplicationModal extends React.Component {
               <label>
                 Application Status:
                 <select
+                  defaultValue={this.state.details.statusName}
                   name="statusName"
-                  value={this.state.details.statusName}
                   onChange={this.formFieldChangeHandler}
                 >
-                  <option selected value="pending">
-                    Pending
-                  </option>
+                  <option value="pending">Pending</option>
                   <option value="applied">Applied</option>
                   <option value="interviewed">Interviewed</option>
                   <option value="offer_received">Offer Received</option>
@@ -124,13 +118,11 @@ class CreateJobApplicationModal extends React.Component {
               <label>
                 Post Source:
                 <select
+                  defaultValue={this.state.details.postSource}
                   name="postSource"
-                  value={this.state.details.postSource}
                   onChange={this.formFieldChangeHandler}
                 >
-                  <option selected value="friend">
-                    Friend
-                  </option>
+                  <option value="friend">Friend</option>
                   <option value="internet">Internet</option>
                 </select>
               </label>
@@ -150,7 +142,9 @@ class CreateJobApplicationModal extends React.Component {
                   onChange={this.formFieldChangeHandler}
                 />
               </label>
-              <button type="submit">Add Job</button>
+              <button type="submit" onClick={this.handleSubmit}>
+                Add Job
+              </button>
             </form>
           </div>
           <div className="modal-footer">
@@ -167,7 +161,5 @@ class CreateJobApplicationModal extends React.Component {
     );
   }
 }
-
-// export default CreateJobApplicationModal;
 
 export default connect(null, mapDispatchToProps)(CreateJobApplicationModal);

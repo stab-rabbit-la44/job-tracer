@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import JobApplicationList from './components/JobApplicationList';
 import store from './store';
-import { loadJobApplications } from './actions/actions';
+import { loadJobApplications, addJobApplication } from './actions/actions';
+
 import CreateJobApplicationModal from './components/modals/CreateJobApplicationModal';
 
 const mapStateToProps = (state) => ({
@@ -20,7 +21,11 @@ const App = (props) => {
       <button type="button" onClick={() => setShow(true)}>
         Create
       </button>
-      <CreateJobApplicationModal onClose={() => setShow(false)} show={show} />
+      <CreateJobApplicationModal
+        onClose={() => setShow(false)}
+        show={show}
+        addJobApplication={addJobApplication}
+      />
       <JobApplicationList jobApplications={props.jobApplications} />
     </div>
   );
