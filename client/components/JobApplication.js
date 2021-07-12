@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Application = (props) => (
+const JobApplication = (props) => (
   <div>
     <span>{props.companyName}</span>
     <span>{props.jobTitle}</span>
@@ -14,4 +14,4 @@ const Application = (props) => (
   </div>
 );
 
-export default Application;
+export default JobApplication;
