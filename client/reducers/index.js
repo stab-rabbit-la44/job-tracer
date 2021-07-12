@@ -2,9 +2,11 @@
 import { combineReducers } from 'redux';
 
 // import reducers from './reducers';
-import reducers from './reducers';
+import jobApplicationsReducer from './jobApplicationsReducer';
 
 // export combineReducers w/ obj of key applications: reducers
-export default combineReducers({
-  applications: reducers,
+const reducers = combineReducers({
+  jobApplications: jobApplicationsReducer,
 });
+
+export default reducers;

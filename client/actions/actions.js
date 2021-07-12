@@ -1,62 +1,42 @@
 import * as types from '../constants/actionTypes';
 
+export const loadJobApplications = () => (dispatch) => {
+  fetch('api/', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'Application/JSON',
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      dispatch({
+        type: types.LOAD_JOB_APPLICATIONS,
+        payload: data,
+      });
+    });
+};
+
 export const addApp = () => ({
-  type: types.ADD_APP,
+  type: types.ADD_JOB_APPLICATION,
   payload: 'addApp payload placeholder',
 });
 
-export const deleteApp = () => ({
-  type: types.DELETE_APP,
-  payload: 'deleteApp payload placeholder',
-});
-
-export const editApp = () => ({
-  type: types.EDIT_APP,
-  payload: 'editApp payload placeholder',
-});
-
-export const loadApps = () => (dispatch) => {
-  dispatch({
-    type: types.LOAD_APPS,
-    payload: {
-      applications: [
-        {
-          id: 1,
-          company_name: 'Company Name 1',
-          job_title: 'Job Title 1',
-          salary: null,
-          description: 'description 1',
-          post_source: 'friend',
-          status_id: 1234,
-          notes: 'notes notes notes',
-          status_date: '01/01/1990',
-          favorite: false,
-        },
-        {
-          id: 2,
-          company_name: 'Company Name 1',
-          job_title: 'Job Title 1',
-          salary: null,
-          description: 'description 1',
-          post_source: 'friend',
-          status_id: 1234,
-          notes: 'notes notes notes',
-          status_date: '01/01/1990',
-          favorite: false,
-        },
-        {
-          id: 3,
-          company_name: 'Company Name 1',
-          job_title: 'Job Title 1',
-          salary: null,
-          description: 'description 1',
-          post_source: 'friend',
-          status_id: 1234,
-          notes: 'notes notes notes',
-          status_date: '01/01/1990',
-          favorite: false,
-        },
-      ],
+export const deleteJobApplication = (id) => (dispatch) => {
+  console.log(id);
+  fetch(`api/jobApplication/?id=${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'Application/JSON',
     },
+  }).then(() => {
+    dispatch({
+      type: types.DELETE_JOB_APPLICATION,
+      payload: id,
+    });
   });
 };
+
+export const editApp = () => ({
+  type: types.EDIT_JOB_APPLICATION,
+  payload: 'editApp payload placeholder',
+});
