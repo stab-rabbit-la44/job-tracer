@@ -7,7 +7,6 @@ const initialState = {
     {
       company_name: 'Company Name 1',
       job_title: 'Job Title 1',
-      deadline: null,
       salary: null,
       description: 'description 1',
       post_source: 'friend',
@@ -19,7 +18,6 @@ const initialState = {
     {
       company_name: 'Company Name 1',
       job_title: 'Job Title 1',
-      deadline: null,
       salary: null,
       description: 'description 1',
       post_source: 'friend',
@@ -31,7 +29,6 @@ const initialState = {
     {
       company_name: 'Company Name 1',
       job_title: 'Job Title 1',
-      deadline: null,
       salary: null,
       description: 'description 1',
       post_source: 'friend',
