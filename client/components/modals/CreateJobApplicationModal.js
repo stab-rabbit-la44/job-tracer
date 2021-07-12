@@ -4,32 +4,44 @@ import { connect } from 'react-redux';
 
 import * as actions from '../../actions/actions';
 
-const data = {
-  companyName: 'From the Frontend LLC',
-  jobTitle: 'president',
-  salary: 9000,
-  // status: 'offer',
-  description: 'test from postman',
-  postSource: 'friend',
-  notes: 'nothing to report, carry on',
-  favorite: true,
-};
-
 const mapDispatchToProps = (dispatch) => ({
-  addJobApplication: () => dispatch(actions.addJobApplication(data)),
+  addJobApplication: () => dispatch(actions.addJobApplication),
 });
 
 class CreateJobApplicationModal extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      details: {
+        companyName: '',
+        jobTitle: '',
+        salary: null,
+        postSource: '',
+        description: '',
+        statusName: '',
+        notes: '',
+        statusDate: '',
+        favorite: false,
+      },
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.formFieldChangeHandler = this.formFieldChangeHandler.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addJobApplication(data);
-    console.log(this.props.history);
+    this.props.addJobApplication(this.state.details);
+  }
+
+  formFieldChangeHandler(event) {
+    const { details } = this.state;
+    details[event.target.name] = event.target.value;
+    this.setState({ details });
+  }
+
+  SubmitHandler(event) {
+    event.preventDefault();
+    this.props.submitHandler(this.state.details);
   }
 
   render() {
@@ -44,10 +56,14 @@ class CreateJobApplicationModal extends React.Component {
             <h4 className="modal-title">Create Job Application</h4>
           </div>
           <div className="modal-body">
-            <form>
+            <form onSubmit={this.SubmitHandler}>
               <label>
                 Favorite?:
-                <select>
+                <select
+                  name="favorite"
+                  value={this.state.details.favorite}
+                  onChange={this.formFieldChangeHandler}
+                >
                   <option selected value="false">
                     No
                   </option>
@@ -56,20 +72,50 @@ class CreateJobApplicationModal extends React.Component {
               </label>
               <label>
                 Company Name:
-                <input type="text" />
+                <input
+                  type="text"
+                  name="companyName"
+                  value={this.state.details.companyName}
+                  onChange={this.formFieldChangeHandler}
+                />
               </label>
               <label>
                 Job Title:
-                <input type="text" />
+                <input
+                  type="text"
+                  name="jobTitle"
+                  value={this.state.details.jobTitle}
+                  onChange={this.formFieldChangeHandler}
+                />
               </label>
               <label>
                 Salary:
-                <input type="text" />
+                <input
+                  type="text"
+                  name="salary"
+                  value={this.state.details.salary}
+                  onChange={this.formFieldChangeHandler}
+                />
+              </label>
+              <label>
+                Application Status Date:
+                <input
+                  type="date"
+                  name="statusDate"
+                  value={this.state.details.statusDate}
+                  onChange={this.formFieldChangeHandler}
+                />
               </label>
               <label>
                 Application Status:
-                <select defaultValue="pending">
-                  <option value="pending">Pending</option>
+                <select
+                  name="statusName"
+                  value={this.state.details.statusName}
+                  onChange={this.formFieldChangeHandler}
+                >
+                  <option selected value="pending">
+                    Pending
+                  </option>
                   <option value="applied">Applied</option>
                   <option value="interviewed">Interviewed</option>
                   <option value="offer_received">Offer Received</option>
@@ -80,18 +126,32 @@ class CreateJobApplicationModal extends React.Component {
               </label>
               <label>
                 Post Source:
-                <select defaultValue="friend">
-                  <option value="friend">Friend</option>
+                <select
+                  name="postSource"
+                  value={this.state.details.postSource}
+                  onChange={this.formFieldChangeHandler}
+                >
+                  <option selected value="friend">
+                    Friend
+                  </option>
                   <option value="internet">Internet</option>
                 </select>
               </label>
               <label>
                 Description:
-                <textarea />
+                <textarea
+                  name="description"
+                  value={this.state.details.description}
+                  onChange={this.formFieldChangeHandler}
+                />
               </label>
               <label>
                 Notes:
-                <textarea />
+                <textarea
+                  name="notes"
+                  value={this.state.details.notes}
+                  onChange={this.formFieldChangeHandler}
+                />
               </label>
               <button type="submit" onClick={this.handleSubmit}>
                 Add Job
