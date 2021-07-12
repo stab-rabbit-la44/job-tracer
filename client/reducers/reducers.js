@@ -5,6 +5,7 @@ import * as types from '../constants/actionTypes';
 const initialState = {
   applications: [
     {
+      id: 1,
       company_name: 'Company Name 1',
       job_title: 'Job Title 1',
       salary: null,
@@ -16,6 +17,7 @@ const initialState = {
       favorite: false,
     },
     {
+      id: 2,
       company_name: 'Company Name 1',
       job_title: 'Job Title 1',
       salary: null,
@@ -27,6 +29,7 @@ const initialState = {
       favorite: false,
     },
     {
+      id: 3,
       company_name: 'Company Name 1',
       job_title: 'Job Title 1',
       salary: null,

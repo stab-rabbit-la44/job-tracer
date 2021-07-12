@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Market = (props) => (
+const Application = (props) => (
   <div>
     <span>{props.companyName}</span>
     <span>{props.jobTitle}</span>
@@ -14,4 +14,4 @@ const Market = (props) => (
   </div>
 );
 
-export default Market;
+export default Application;

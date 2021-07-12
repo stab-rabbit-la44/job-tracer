@@ -21,6 +21,7 @@ export const loadApps = () => (dispatch) => {
     payload: {
       applications: [
         {
+          id: 1,
           company_name: 'Company Name 1',
           job_title: 'Job Title 1',
           salary: null,
@@ -32,6 +33,7 @@ export const loadApps = () => (dispatch) => {
           favorite: false,
         },
         {
+          id: 2,
           company_name: 'Company Name 1',
           job_title: 'Job Title 1',
           salary: null,
@@ -43,6 +45,7 @@ export const loadApps = () => (dispatch) => {
           favorite: false,
         },
         {
+          id: 3,
           company_name: 'Company Name 1',
           job_title: 'Job Title 1',
           salary: null,
