@@ -141,9 +141,9 @@ jobApplicationController.updateJobApplicationById = (req, res, next) => {
 
 jobApplicationController.deleteJobApplicationById = (req, res, next) => {
   // get id from req query
-
   const { id } = req.query;
 
+  console.log(id);
   // make query string
 
   const queryStr = `
