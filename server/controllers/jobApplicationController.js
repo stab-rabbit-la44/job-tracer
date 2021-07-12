@@ -39,6 +39,8 @@ jobApplicationController.createJobApplication = (req, res, next) => {
     salary,
     description,
     postSource,
+    statusName,
+    statusDate,
     notes,
     favorite,
   } = req.body;
@@ -51,6 +53,8 @@ jobApplicationController.createJobApplication = (req, res, next) => {
     salary,
     description,
     postSource,
+    statusName,
+    statusDate,
     notes,
     favorite,
   ];
@@ -60,9 +64,9 @@ jobApplicationController.createJobApplication = (req, res, next) => {
   const queryStr = `
     INSERT INTO 
       applications 
-        (company_name,job_title,salary,description,post_source,notes,favorite)
+        (company_name,job_title,salary,description,post_source,status_name, status_date, notes, favorite)
       VALUES 
-        ($1, $2, $3, $4, $5, $6, $7)`;
+        ($1, $2, $3, $4, $5, $6, $7, $, $9)`;
 
   // call db query passing in query string and values array
 
