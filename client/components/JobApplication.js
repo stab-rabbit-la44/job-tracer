@@ -15,7 +15,7 @@ const JobApplication = (props) => {
           <button
             className="btn btn-close"
             type="button"
-            onClick={() => console.log('edit button here')}
+            onClick={() => setShow(true)}
           >
             Edit
           </button>

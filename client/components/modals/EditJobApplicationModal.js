@@ -151,14 +151,16 @@ class EditJobApplicationModal extends React.Component {
                   onChange={this.formFieldChangeHandler}
                 />
               </label>
-              <button type="submit">Submit Changes</button>
+              <button className="btn btn-add" type="submit">
+                Submit Changes
+              </button>
             </form>
           </div>
           <div className="modal-footer">
             <button
               type="button"
               onClick={this.props.onClose}
-              className="modalCloseButton"
+              className="btn btn-close"
             >
               Close
             </button>

@@ -75,3 +75,8 @@ body {
 .heading {
   text-align: center;
 }
+
+.modal {
+  background-color: grey;
+  padding: 20px;
+}
