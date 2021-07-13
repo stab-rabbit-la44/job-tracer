@@ -10,8 +10,8 @@ const mapDispatchToProps = (dispatch) => ({
 function JobApplicationList({ jobApplications, deleteJobApplication }) {
   return (
     <div>
-      <h2>Application List</h2>
-      <div>
+      <h2 className="heading">Application List</h2>
+      <div className="list">
         {jobApplications &&
           jobApplications.map((application) => (
             <JobApplication
@@ -19,7 +19,7 @@ function JobApplicationList({ jobApplications, deleteJobApplication }) {
               id={application.id}
               companyName={application.company_name}
               jobTitle={application.job_title}
-              status={application.status_id}
+              status={application.status_name}
               deleteJobApplication={deleteJobApplication}
             />
           ))}
