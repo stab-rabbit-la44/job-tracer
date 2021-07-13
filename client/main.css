@@ -1,0 +1,77 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+body {
+  height: 100vh;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.ml {
+  margin-left: 8px;
+}
+
+.job-application {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4px 0;
+  width: 650px;
+  margin: 0 auto;
+}
+
+.container {
+  margin: 0 auto;
+  width: 900px;
+  max-width: 100%;
+}
+
+.btn {
+  font-size: 12px;
+  margin: 2rem auto;
+  padding: 8px 16px;
+  border-radius: 0.5rem;
+}
+
+.btn-close {
+  border: 1px solid rgb(45, 45, 156);
+}
+.btn-add {
+  background: rgb(72, 134, 72);
+}
+
+.btn-delete {
+  background: rgb(146, 51, 51);
+}
+
+.list {
+  border: 1px solid rgba(33, 32, 34, 0.651);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 650px;
+  margin: 0 auto;
+  padding: 24px;
+  max-width: 100%;
+}
+
+.heading {
+  text-align: center;
+}

@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import JobApplicationList from './components/JobApplicationList';
 import store from './store';
 import { loadJobApplications, addJobApplication } from './actions/actions';
-
 import CreateJobApplicationModal from './components/modals/CreateJobApplicationModal';
+import './main.css';
 
 const mapStateToProps = (state) => ({
   jobApplications: state.jobApplications.jobApplications,
@@ -17,8 +17,12 @@ const App = (props) => {
   }, []);
 
   return (
-    <div>
-      <button type="button" onClick={() => setShow(true)}>
+    <div className="container">
+      <button
+        className="btn btn-add"
+        type="button"
+        onClick={() => setShow(true)}
+      >
         Create
       </button>
       <CreateJobApplicationModal
@@ -31,5 +35,4 @@ const App = (props) => {
   );
 };
 
-// export default App;
 export default connect(mapStateToProps, null)(App);

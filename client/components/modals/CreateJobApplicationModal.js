@@ -6,6 +6,7 @@ import * as actions from '../../actions/actions';
 const mapDispatchToProps = (dispatch) => ({
   addJobApplication: (newJobApplication) =>
     dispatch(actions.addJobApplication(newJobApplication)),
+  loadJobApplications: () => dispatch(actions.loadJobApplications),
 });
 
 class CreateJobApplicationModal extends React.Component {
@@ -31,6 +32,21 @@ class CreateJobApplicationModal extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.addJobApplication(this.state.details);
+    this.props.loadJobApplications();
+    this.setState({
+      details: {
+        companyName: '',
+        jobTitle: '',
+        salary: '',
+        postSource: '',
+        description: '',
+        statusName: '',
+        notes: '',
+        statusDate: '',
+        favorite: false,
+      },
+    });
+    this.props.onClose();
   }
 
   formFieldChangeHandler(event) {
@@ -45,13 +61,13 @@ class CreateJobApplicationModal extends React.Component {
     }
 
     return (
-      <div className="modal">
+      <div className="modal list">
         <div className="modal-content">
           <div className="modal-header">
             <h4 className="modal-title">Create Job Application</h4>
           </div>
           <div className="modal-body">
-            <form onSubmit={this.SubmitHandler}>
+            <form>
               <label>
                 Favorite?:
                 <select
@@ -142,16 +158,20 @@ class CreateJobApplicationModal extends React.Component {
                   onChange={this.formFieldChangeHandler}
                 />
               </label>
-              <button type="submit" onClick={this.handleSubmit}>
+              <button
+                className="btn btn-add"
+                type="submit"
+                onClick={this.handleSubmit}
+              >
                 Add Job
               </button>
             </form>
           </div>
           <div className="modal-footer">
             <button
+              className="btn btn-close"
               type="button"
               onClick={this.props.onClose}
-              className="modalCloseButton"
             >
               Close
             </button>
