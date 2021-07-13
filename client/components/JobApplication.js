@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import EditJobApplicationModal from './modals/EditJobApplicationModal';
 
 const JobApplication = (props) => {
+  const [show, setShow] = useState(false);
   return (
     <>
       {props.companyName && (
@@ -17,6 +19,11 @@ const JobApplication = (props) => {
           >
             Edit
           </button>
+          <EditJobApplicationModal
+            jobAppId={props.id}
+            onClose={() => setShow(false)}
+            show={show}
+          />
           <button
             className=" btn btn-delete"
             type="button"
