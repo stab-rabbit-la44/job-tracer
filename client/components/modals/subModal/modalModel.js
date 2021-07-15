@@ -13,7 +13,7 @@ class ModalModel extends React.Component {
               <label>
                 Favorite:
                 <select
-                  defaultValue={this.props.details.favorite}
+                  value={this.props.details.favorite}
                   name="favorite"
                   onChange={this.props.formFieldChangeHandler}
                 >
@@ -60,7 +60,7 @@ class ModalModel extends React.Component {
               <label>
                 Application Status:
                 <select
-                  defaultValue={this.props.details.statusName}
+                  value={this.props.details.statusName}
                   name="statusName"
                   onChange={this.props.formFieldChangeHandler}
                 >
@@ -76,7 +76,7 @@ class ModalModel extends React.Component {
               <label>
                 Post Source:
                 <select
-                  defaultValue={this.props.details.postSource}
+                  value={this.props.details.postSource}
                   name="postSource"
                   onChange={this.props.formFieldChangeHandler}
                 >

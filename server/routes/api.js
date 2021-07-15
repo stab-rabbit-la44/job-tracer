@@ -33,7 +33,7 @@ router.post(
  * @access Public
  */
 
-router.put( 
+router.patch( 
   '/jobApplication',
   jobApplicationController.updateJobApplicationById,
   (req, res) => {

@@ -44,6 +44,7 @@ class EditJobApplicationModal extends React.Component {
   }
 
   formFieldChangeHandler(event) {
+    console.log(event)
     this.props.jobApplicationObject[event.target.name] = event.target.value;
   }
 
@@ -59,7 +60,6 @@ class EditJobApplicationModal extends React.Component {
     if (!this.props.show) {
       return null;
     }
-
     return (
       <ModalModel
         details={this.props.jobApplicationObject}

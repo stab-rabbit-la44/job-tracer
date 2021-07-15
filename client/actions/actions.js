@@ -62,8 +62,8 @@ export const deleteJobApplication = (id) => (dispatch) => {
 
 export const editApp = (data) => (dispatch) => {
   console.log(data);
-  fetch(`api/jobApplication`, {
-    method: 'put',
+  fetch(`api/jobApplication/${data.id}`, {
+    method: 'PATCH',
     headers: {
       'Content-Type': 'Application/JSON',
     },
