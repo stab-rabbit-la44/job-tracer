@@ -4,29 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack -w",
+    "test": "jest --verbose",
     "start": "node server/server.js",
-    "dev": "cross-env NODE_ENV=development concurrently \"webpack serve  --open\"  \"nodemon server/server.js\"",
-    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix . ",
-    "prepare": "husky install"
-  },
-  "lint-staged": {
-    "client/**/*.{js,jsx}": [
-      "eslint . --fix"
-    ],
-    "server/**/*.{js,jsx}": [
-      "eslint . --fix"
-    ],
-    "*.+(json|css|md)": [
-      "prettier --write"
-    ],
-    "*.js": "eslint --cache --fix"
+    "dev": "cross-env NODE_ENV=development concurrently \"webpack serve  --open\"  \"nodemon server/server.js\""
   },
   "nodemonConfig": {
     "ignore": [
       "client/*"
     ]
+  },
+  "jest": {
+    "globalSetup": "./jest-setup.js",
+    "globalTeardown": "./jest-teardown.js"
   },
   "repository": {
     "type": "git",
@@ -56,28 +46,39 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
+    "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
-    "@babel/plugin-transform-runtime": "^7.14.5",
+    "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
     "concurrently": "^6.2.0",
     "cross-env": "^6.0.3",
     "css-loader": "^5.2.6",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "enzyme-to-json": "^3.6.2",
     "eslint": "^7.30.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "html-webpack-plugin": "^5.3.2",
-    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "jest-puppeteer": "^5.0.4",
+    "js-test": "0.0.1",
     "lint-staged": "^11.0.0",
     "nodemon": "^2.0.11",
     "prettier-eslint": "^12.0.0",
+    "puppeteer": "^10.1.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^17.0.2",
     "style-loader": "^3.0.0",
+    "supertest": "^6.1.3",
     "webpack": "^5.44.0",
     "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "zombie": "^6.1.4"
   }
 }
