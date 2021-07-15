@@ -5,7 +5,7 @@ import subject from '../client/reducers/jobApplicationsReducer';
  * pure (in theory), all we have to do is look at the inputs and outputs. We
  * can also add some tests to determine if the reducer really is pure!
  */
-describe('MegaMarkets reducer', () => {
+describe('JobApplications reducer', () => {
   let state;
 
   beforeEach(() => {
@@ -20,24 +20,41 @@ describe('MegaMarkets reducer', () => {
     });
   });
 
-  xdescribe('unrecognized action types', () => {
+  describe('unrecognized action types', () => {
     it('should return the original without any duplication', () => {
-      const action = { type: 'aajsbicawlbejckr' };
+      const action = { type: 'whatever' };
       expect(subject(state, action)).toBe(state);
     });
   });
 
-  xdescribe('ADD_MARKET', () => {
+  describe('CREATE JOB APP', () => {
     const action = {
-      type: 'ADD_MARKET',
-      payload: 'Azkaban',
+      type: 'ADD_JOB_APPLICATION',
+      payload: {
+        companyName: 'google-test',
+        jobTitle: 'swe-test',
+        salary: '10000000',
+        postSource: 'linkedin',
+        description: 'exciting',
+        statusName: 'pending',
+        notes: 'fun',
+        statusDate: '2021-07-31',
+        favorite: true,
+      },
     };
 
-    xit('adds a market', () => {
-      const { marketList } = subject(state, action);
-      expect(marketList[0]).toEqual({
-        location: 'Azkaban',
-        cards: 0,
+    it('adds a new job app to the tracker', () => {
+      const { jobApplications } = subject(state, action);
+      expect(jobApplications[0]).toEqual({
+        companyName: 'google-test',
+        jobTitle: 'swe-test',
+        salary: '10000000',
+        postSource: 'linkedin',
+        description: 'exciting',
+        statusName: 'pending',
+        notes: 'fun',
+        statusDate: '2021-07-31',
+        favorite: true,
       });
     });
 
@@ -61,8 +78,28 @@ describe('MegaMarkets reducer', () => {
     });
   });
 
-  xdescribe('UPDATE_LOCATION', () => {
-    xit('updates location with the action payload', () => {
+  describe('EDIT_JOB_APPLICATION', () => {
+    const action = {
+      type: 'EDIT_JOB_APPLICATION',
+      data: {
+        companyName: 'google-test',
+        jobTitle: 'swe-test',
+        salary: '10000000',
+        postSource: 'linkedin',
+        description: 'exciting',
+        statusName: 'pending',
+        notes: 'fun',
+        statusDate: '2021-07-31',
+        favorite: true,
+      }, 
+      payload: {
+	          salary: '10'
+             },
+    };
+    
+    it('update salary with the action payload', () => {
+	const { jobApplications } = subject(state, action);
+	expect(jobApplications[0].salary).toEqual('10');
     });
 
     xit('returns a state object not strictly equal to the original', () => {
