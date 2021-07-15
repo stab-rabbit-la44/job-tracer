@@ -22,7 +22,7 @@ module.exports = {
     inline: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
-      '/api/**': {
+      '/api/': {
         target: 'http://localhost:3000/',
         secure: false,
       },
