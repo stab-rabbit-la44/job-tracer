@@ -7,13 +7,28 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  console.log({ action });
-  console.log(state);
   switch (action.type) {
     case types.LOAD_JOB_APPLICATIONS:
+      const jobApps = []
+      action.payload.forEach((app) => {
+        let jobApplication = {
+          id: app.id,
+          companyName: app.company_name,
+          description: app.description,
+          favorite: app.favorite,
+          jobTitle: app.job_title,
+          notes: app.notes,
+          postSource: app.post_source,
+          salary: app.salary,
+          statusDate: app.status_date,
+          statusName: app.status_name,
+        }
+        jobApps.push(jobApplication)
+      })
       return {
         ...state,
-        jobApplications: action.payload,
+        jobApplications: jobApps,
+        // jobApplications: action.payload
       };
     case types.ADD_JOB_APPLICATION:
       return {

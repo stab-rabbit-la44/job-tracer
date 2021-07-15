@@ -7,21 +7,6 @@
     "start": "node server/server.js",
     "dev": "cross-env NODE_ENV=development concurrently \"webpack serve  --open\"  \"nodemon server/server.js\"",
     "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix . ",
-    "prepare": "husky install"
-  },
-  "lint-staged": {
-    "client/**/*.{js,jsx}": [
-      "eslint . --fix"
-    ],
-    "server/**/*.{js,jsx}": [
-      "eslint . --fix"
-    ],
-    "*.+(json|css|md)": [
-      "prettier --write"
-    ],
-    "*.js": "eslint --cache --fix"
   },
   "nodemonConfig": {
     "ignore": [
