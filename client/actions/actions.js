@@ -60,7 +60,23 @@ export const deleteJobApplication = (id) => (dispatch) => {
     });
 };
 
-export const editApp = () => ({
-  type: types.EDIT_JOB_APPLICATION,
-  payload: 'editApp payload placeholder',
-});
+export const editApp = (data) => (dispatch) => {
+  console.log(data);
+  fetch(`api/jobApplication`, {
+    method: 'put',
+    headers: {
+      'Content-Type': 'Application/JSON',
+    },
+    body: JSON.stringify(data),
+  })
+    .then(() => {
+      dispatch({
+        type: types.EDIT_JOB_APPLICATION,
+        payload: data,
+      });
+    })
+    .catch((err) => {
+      // dispatch errors here later...
+      console.log(err);
+    });
+};

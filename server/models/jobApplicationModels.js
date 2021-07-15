@@ -18,7 +18,10 @@ https://www.elephantsql.com/docs/index.html
 
 // Import elephant db connection string.
 
-const PG_URI = config.get('PG_URI');
+// URI = postgres://ejeyuixh:1Wh51hOJ_NzPFm2z8Cax4xMdEtsf6sCc@kashin.db.elephantsql.com/ejeyuixh
+// mine = postgres://kpuyyule:1EVo9iLcfUKNan6rL1zrH5EREusK5dnX@kashin.db.elephantsql.com/kpuyyule
+const PG_URI =
+  'postgres://kpuyyule:1EVo9iLcfUKNan6rL1zrH5EREusK5dnX@kashin.db.elephantsql.com/kpuyyule';
 
 const pool = new Pool({
   connectionString: PG_URI,
