@@ -7,7 +7,12 @@
     "build": "webpack -w",
     "test": "jest --verbose",
     "start": "node server/server.js",
+<<<<<<< HEAD
     "dev": "cross-env NODE_ENV=development concurrently \"webpack serve  --open\"  \"nodemon server/server.js\""
+=======
+    "dev": "cross-env NODE_ENV=development concurrently \"webpack serve  --open\"  \"nodemon server/server.js\"",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+>>>>>>> 9144860b072e82febd83d221eed2ffbf8e792483
   },
   "nodemonConfig": {
     "ignore": [

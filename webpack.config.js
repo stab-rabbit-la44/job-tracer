@@ -22,8 +22,13 @@ module.exports = {
     inline: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
+<<<<<<< HEAD
       '/api/**': {
         target: 'http://localhost:4000/',
+=======
+      '/api/': {
+        target: 'http://localhost:3000/',
+>>>>>>> 9144860b072e82febd83d221eed2ffbf8e792483
         secure: false,
       },
     },
