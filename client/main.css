@@ -1,14 +1,27 @@
 *,
+html {
+  box-sizing: border-box;
+}
 *::after,
 *::before {
-  box-sizing: border-box;
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
 }
 
 button {
-  cursor: pointer;
-  border: 0;
-  border-radius: 0;
-  background-color: transparent;
+  display: inline-block;
+  padding: 0.5em 3em;
+  border: 0.16em solid #ffffff;
+  margin: 0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #000000;
+  text-align: center;
+  transition: all 0.15s;
 }
 
 body {
@@ -54,7 +67,19 @@ body {
   border: 1px solid rgb(45, 45, 156);
 }
 .btn-add {
-  background: rgb(72, 134, 72);
+  display: inline-block;
+  padding: 0.5em 3em;
+  border: 0.16em solid #00ff0d;
+  margin: 0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #000000;
+  text-align: center;
+  transition: all 0.15s;
+  background: rgb(255, 255, 255);
 }
 
 .btn-delete {
@@ -77,6 +102,23 @@ body {
 }
 
 .modal {
-  background-color: grey;
+  background-color: rgb(240, 240, 240);
   padding: 20px;
+}
+
+
+nav ul {
+  list-style: none;
+  display: flex;
+  background-color: rgb(35, 195, 139);
+  margin-bottom: 20px;
+}
+
+nav ul li {
+  padding: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
 }

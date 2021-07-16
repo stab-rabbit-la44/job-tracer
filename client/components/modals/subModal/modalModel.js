@@ -1,6 +1,11 @@
 import React from 'react';
 
 class ModalModel extends React.Component {
+
+  // formFieldChangeHandler(event) {
+  //   this.props.jobApplicationObject[event.target.name] = event.target.value;
+  // }
+
   render() {
     return (
       <div className="modal list">

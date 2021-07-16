@@ -1,38 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import JobApplicationList from './components/JobApplicationList';
-import store from './store';
-import { loadJobApplications, addJobApplication } from './actions/actions';
-import CreateJobApplicationModal from './components/modals/CreateJobApplicationModal';
+import React, {  Component } from 'react';
+import Navbar from './components/Navbar.jsx';
+import Routes from './components/Routes.jsx';
 import './main.css';
 
-const mapStateToProps = (state) => ({
-  jobApplications: state.jobApplications.jobApplications,
-});
 
-const App = (props) => {
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    store.dispatch(loadJobApplications());
-  }, []);
+class App extends Component {
+  render() {
+    return (
+      <div className="container">
+        <Navbar />
+        <Routes />
+      </div>
+    );
+  }
+}
 
-  return (
-    <div className="container">
-      <button
-        className="btn btn-add"
-        type="button"
-        onClick={() => setShow(true)}
-      >
-        Create
-      </button>
-      <CreateJobApplicationModal
-        onClose={() => setShow(false)}
-        show={show}
-        addJobApplication={addJobApplication}
-      />
-      <JobApplicationList jobApplications={props.jobApplications} />
-    </div>
-  );
-};
-
-export default connect(mapStateToProps, null)(App);
+export default App;
